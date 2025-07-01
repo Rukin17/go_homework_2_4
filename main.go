@@ -24,18 +24,19 @@ func main() {
 }
 
 func checkCorrectSequenceBracket(s string) (bool, int, int, error) {
-	var err error = nil
+	var err error
 	flag := true
 	stack := 0 // В первой версии использовал стэк, во второй - счётчик
 	runes := []rune(s)
 	openBracketCount, closedBracketCount := 0, 0
 
 	for i := range runes {
-		if runes[i] == '(' {
+		switch runes[i] {
+		case '(':
 			stack++
 			openBracketCount++
 
-		} else if runes[i] == ')' {
+		case ')':
 			closedBracketCount++
 			if stack == 0 {
 				err = fmt.Errorf("Ставить ')' раньше, чем '(' - это ни в какие ворота..")
